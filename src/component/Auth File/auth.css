@@ -1,0 +1,30 @@
+section{
+    text-align: center;
+    font-family: -webkit-body;
+    font-size: 20px;
+    border: 2px solid #838383;
+    max-width: 400px;
+    min-height: 400px;
+    margin: auto;
+    margin-top: 2cm;
+    background-color: rgb(184, 219, 202);
+}
+.actions{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.actions button{
+    font-size: 18px;
+    font-family: monospace;
+    padding: 5px;
+    margin: 2px;
+    color: antiquewhite;
+    background-color: darkcyan;
+}
+.control{
+    margin: 10px;
+    font-family: inherit;
+    font-size: 22px;
+}
