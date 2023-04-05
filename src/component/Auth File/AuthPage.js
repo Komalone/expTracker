@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 import AuthContext from './authContext';
 import './auth.css';
 
@@ -9,7 +10,7 @@ const Authentication = () => {
    const passwordInput=useRef("");
    const confPswdInput=useRef("");
    const authCtx=useContext(AuthContext);
-
+    const navigate= useNavigate();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -48,7 +49,8 @@ const Authentication = () => {
             let data= res.json();
             data.then((resp)=>{
                 console.log(resp);
-                authCtx.login(resp.idToken)
+                authCtx.login(resp.idToken);
+                navigate("/main")
             })
         }else{
             const data= res.json();
@@ -63,8 +65,8 @@ const Authentication = () => {
 
   return (
     <section>
-    <h1>{isLogin ? 'Sign In' : 'Sign Up'}</h1>
     <form className='form' onSubmit={submitHandler}>
+      <h1>{isLogin ? 'Sign In' : 'Sign Up'}</h1>
       <div className='control'>
         <label htmlFor='email'>Your Email </label><br/>
         <input type='email' id='email' required ref={emailInput} />
@@ -79,15 +81,17 @@ const Authentication = () => {
       </div>}
       <div className='actions'>
        {<button>{isLogin ? 'Login' : 'Create Account'}</button>}
-        <button
-          type='button'
-          className='toggle'
-          onClick={switchAuthModeHandler}
-        >
-          {isLogin ? 'Create new account' : 'Login with existing account'}
-        </button>
+        
       </div>
     </form>
+    <div className='toggle'>
+    <button
+          type='button'
+          onClick={switchAuthModeHandler}
+        >
+          {isLogin ? " Don't have an account? Sign Up" : 'Login with existing account'}
+        </button>
+    </div>
   </section>
   )
 }
