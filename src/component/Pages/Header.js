@@ -1,17 +1,19 @@
 import { NavLink } from "react-router-dom";
 import "./main.css";
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Nav  } from 'react-bootstrap';
 const Header=()=>{
     return (
-        <Navbar bg='dark' expand="sm">
-            <Navbar.Brand href="#">My Tracker</Navbar.Brand>
+        <Navbar bg='light' expand="sm">
+            <div className="nav">
+            <Navbar.Brand>My Tracker</Navbar.Brand>
             <Navbar.Collapse id="basic">
-                <nav>
-                    <NavLink to="/main">Home</NavLink>
-                    <NavLink to="/login">Login / Sign Up</NavLink>
-                    <NavLink to="/main">Daily Expense</NavLink>
-                </nav>
+                <Nav><ul>
+                    <li><NavLink to="/main">HOME</NavLink></li>
+                    <li><NavLink to="/">Login/ Sign Up</NavLink></li>
+                    <li><NavLink to="/main">Daily Expense</NavLink></li>
+                    </ul></Nav>
             </Navbar.Collapse>
+            </div>
         </Navbar>
     );
 }

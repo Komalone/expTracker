@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import AuthContext from './authContext';
 import './auth.css';
 
@@ -49,7 +49,9 @@ const Authentication = () => {
             let data= res.json();
             data.then((resp)=>{
                 console.log(resp);
-                authCtx.login(resp.idToken);
+                localStorage.setItem('token', resp.idToken);
+                localStorage.setItem('email', resp.email)
+                authCtx.login();
                 navigate("/main")
             })
         }else{

@@ -1,13 +1,15 @@
 import { Fragment } from "react";
-import {  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './main.css'
 
 const Main=()=>{
     return (
         <Fragment>
-            <section>
-        <h3>Welcome to expense Tracker</h3>
-        </section>
+        <div className="main">
+        <div>Welcome to expense Tracker</div>
+        <div className="right">Complete your Profile  
+        <Link to="/completeprofile"> Complete Now </Link></div>
+        </div>
         </Fragment>
     );
 }
