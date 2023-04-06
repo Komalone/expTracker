@@ -32,6 +32,7 @@ section{
     padding: 10px;
     background-color: rgb(185, 185, 185);
     border-radius: 8px;
+    font-family: monospace;
 }
 .form-head{
     display: flex;
@@ -57,4 +58,9 @@ section{
     border-radius: 10px;
     background-color: rgb(33, 95, 95);
     color: aliceblue;
+}
+.form1 input{
+    max-width: 100%;
+    padding: 4px;
+    font-size: 15px;
 }

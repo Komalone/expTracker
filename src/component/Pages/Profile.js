@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './main.css';
 import { Link } from "react-router-dom";
 
@@ -36,6 +36,25 @@ const Profile=()=>{
        console.log(name);
 
     }
+// get the data
+    const getDataHandler=()=>{
+        fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
+            method: 'POST',
+            body:JSON.stringify({
+                idToken:localStorage.getItem("idToken"),
+            }),
+            headers:{'Content-Type': 'application/json'}
+        }).then((res)=>{
+            const data= res.json();
+            data.then((resp)=>{
+                console.log( "get data user",resp.users);
+                setName(resp.users[0].displayName);
+                setUrl(resp.users[0].photoUrl);
+            })
+        })
+    }
+    useEffect(()=>getDataHandler(), [])
+
     return (
         <>
         <div className="main">
