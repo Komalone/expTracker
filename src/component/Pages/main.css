@@ -58,9 +58,19 @@ section{
     border-radius: 10px;
     background-color: rgb(33, 95, 95);
     color: aliceblue;
+    align-items: center;
 }
 .form1 input{
     max-width: 100%;
     padding: 4px;
     font-size: 15px;
+}
+.verifyBtn{
+    position: absolute;
+    right: 80px;
+    font-size: 15px;
+    padding: 1px 30px;
+    border-radius: 10px;
+    background-color: rgb(33, 95, 95);
+    color: aliceblue;
 }

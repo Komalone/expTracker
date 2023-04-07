@@ -15,7 +15,7 @@ const Profile=()=>{
        fetch("https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
         method: 'POST',
         body: JSON.stringify({
-            idToken: localStorage.getItem("idToken"),
+            idToken: localStorage.getItem("token"),
             displayName:name,
             photoUrl:profileUrl,
             //deleteAttribute: 'NULL',
@@ -41,7 +41,7 @@ const Profile=()=>{
         fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
             method: 'POST',
             body:JSON.stringify({
-                idToken:localStorage.getItem("idToken"),
+                idToken:localStorage.getItem("token"),
             }),
             headers:{'Content-Type': 'application/json'}
         }).then((res)=>{
