@@ -1,8 +1,21 @@
-import { Fragment } from "react";
+import { Fragment, 
+    useContext, 
+    useState 
+} from "react";
 import { Link } from "react-router-dom";
 import './main.css'
+import AuthContext from "../Auth File/authContext";
 
 const Main=()=>{
+     const authCtx= useContext(AuthContext);
+     const [log,setLog]=useState(true);
+     console.log(log)
+
+    const logoutHandler=()=>{
+        //setLog(false);
+        setLog(authCtx.logout)
+        
+    }
 
     const verifyHandler=(e)=>{
         e.preventDefault();
@@ -31,7 +44,8 @@ const Main=()=>{
         <div className="right">Complete your Profile  
         <Link to="/completeprofile"> Complete Now </Link></div>
         </div>
-        <div>
+        <div className="mainBtn">
+             <button className="verifyBtn" onClick={logoutHandler} >Logout</button><br/>
             <button className="verifyBtn" onClick={verifyHandler}> Verify Email </button>
         </div>
         </Fragment>

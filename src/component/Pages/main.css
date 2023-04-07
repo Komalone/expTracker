@@ -16,9 +16,11 @@ section{
     display: flex;
     margin: 0cm;
 }
-#basic li{
+#basic li a{
     margin: 1px 30px;
     color: white;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .main{
     display: flex;
@@ -66,11 +68,13 @@ section{
     font-size: 15px;
 }
 .verifyBtn{
-    position: absolute;
-    right: 80px;
+    margin: 4px;
     font-size: 15px;
     padding: 1px 30px;
-    border-radius: 10px;
-    background-color: rgb(33, 95, 95);
-    color: aliceblue;
+}
+.mainBtn{
+    display: inline-table;
+    margin: 0px 30px;
+    position: absolute;
+    right: 0px;
 }

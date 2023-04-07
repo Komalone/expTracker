@@ -19,10 +19,20 @@
     color: antiquewhite;
     background-color: darkcyan;
 }
+.actions a, .forget a{
+    color: crimson;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 .control{
     margin: 10px;
     font-family: inherit;
     font-size: 22px;
+}
+.forget input{
+    font-size: 15px;
+    margin: 25px;
+    padding: 5px;
 }
 .toggle{
     text-align: center;

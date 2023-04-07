@@ -8,9 +8,9 @@ const Header=()=>{
             <Navbar.Brand>My Tracker</Navbar.Brand>
             <Navbar.Collapse id="basic">
                 <Nav><ul>
-                    <li><NavLink to="/main">HOME</NavLink></li>
+                    <li><NavLink to="/">HOME</NavLink></li>
                     <li><NavLink to="/">Login/ Sign Up</NavLink></li>
-                    <li><NavLink to="/main">Daily Expense</NavLink></li>
+                    <li><NavLink to="/">Daily Expense</NavLink></li>
                     </ul></Nav>
             </Navbar.Collapse>
             </div>

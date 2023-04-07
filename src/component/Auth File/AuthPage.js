@@ -1,5 +1,5 @@
-import React, { useContext, useRef, useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useContext, useRef, useState } from 'react'; 
+import {useNavigate, Link} from 'react-router-dom';
 import AuthContext from './authContext';
 import './auth.css';
 
@@ -52,7 +52,7 @@ const Authentication = () => {
                 localStorage.setItem('token', resp.idToken);
                 localStorage.setItem('email', resp.email)
                 authCtx.login();
-                navigate("/main")
+                navigate("/")
             })
         }else{
             const data= res.json();
@@ -82,8 +82,8 @@ const Authentication = () => {
         <input type='password' id='password2' required ref={confPswdInput} />
       </div>}
       <div className='actions'>
-       {<button>{isLogin ? 'Login' : 'Create Account'}</button>}
-        
+       {isLogin && <Link to='/forgetpassword' > Forget Password ?</Link>}<br/>
+       <button>{isLogin ? 'Login' : 'Create Account'}</button>
       </div>
     </form>
     <div className='toggle'>
