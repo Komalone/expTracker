@@ -45,6 +45,29 @@ const DailyExpense=()=>{
         })
     },[getExp,url,LoginEmail])
 
+    const delExpense=(key)=>{
+        console.log(key);
+        axios.delete(`${url}${LoginEmail}/${key}.json`)
+        .then((res)=>{
+            console.log("deleted expense");
+            const updateExp= {...getExp};
+            //delete updateExp[key];
+            setGetExp(updateExp);
+        })
+    }
+    const editExpense=(key)=>{
+        console.log(key)
+        axios.get(`${url}${LoginEmail}/${key}.json`)
+        .then((res)=>{
+            console.log(res);
+            amountRef.current.value = res.data.amount;
+            descriptionRef.current.value= res.data.descp;
+            categoryRef.current.value= res.data.cate;
+            delExpense(key); 
+        })
+        .catch(err=> console.log(err));
+    };
+
    return (
     <>
     <fieldset>
@@ -83,8 +106,7 @@ const DailyExpense=()=>{
             <th>Category</th>
             <th>Description</th>
             <th>Amount</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            
         </tr></thead>
         <tbody>
             {Object.keys(getExp).map((key,index)=> (
@@ -93,6 +115,8 @@ const DailyExpense=()=>{
                     <td>{getExp[key].cate}</td>
                     <td>{getExp[key].descp}</td>
                     <td>{getExp[key].amount}</td>
+                    <td><Button variant='danger' onClick={()=>delExpense(key)} >Delete</Button></td>
+                    <td><Button variant='secondary' onClick={()=>editExpense(key)}>Edit</Button></td>
                 </tr>
             ))}
         </tbody>
