@@ -15,7 +15,7 @@ const ForgetPassword=()=>{
     const submitHandler=(e)=>{
         e.preventDefault();
         setSend(true);
-        fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
+        fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDbLh47cYiIULS75nREIYr4JKrs7RQ-Bsk",{
             method: "POST",
             body:JSON.stringify({
                 requestType:"PASSWORD_RESET",

@@ -26,10 +26,10 @@ const Authentication = () => {
         return alert("Password is not same")
     }
     else if(isLogin){
-        url= "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28"
+        url= "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDbLh47cYiIULS75nREIYr4JKrs7RQ-Bsk"
     }
     else{
-        url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28"
+        url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDbLh47cYiIULS75nREIYr4JKrs7RQ-Bsk"
     }
     fetch(url,{
         method:'POST',
@@ -51,7 +51,8 @@ const Authentication = () => {
                 console.log(resp);
                 localStorage.setItem('token', resp.idToken);
                 localStorage.setItem('email', resp.email)
-                authCtx.login();
+                authCtx.login(res.email);
+                authCtx.isLoggedIn=true;
                 navigate("/")
             })
         }else{

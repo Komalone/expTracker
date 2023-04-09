@@ -11,12 +11,10 @@ import ForgetPassword from './component/Auth File/ForgetPswd';
 function App() {
   const auth= useContext(AuthContext);
   const isLogin= auth.isLoggedIn;
-  console.log(isLogin);
+  
   return (
     <Fragment>
-      <headers>
         <Header/>
-      </headers>
   <main>
         <Routes>
         <Route path='/' element={!isLogin ? <Authentication/> : <Main/>}/>  

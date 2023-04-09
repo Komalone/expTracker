@@ -1,7 +1,6 @@
 .form{
     text-align: center;
     font-family: -webkit-body;
-    font-size: 20px;
     border: 2px solid #838383;
     max-width: 320px;
     min-height: 350px;
@@ -27,7 +26,7 @@
 .control{
     margin: 10px;
     font-family: inherit;
-    font-size: 22px;
+    font-size: 20px;
 }
 .forget input{
     font-size: 15px;

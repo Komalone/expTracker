@@ -1,26 +1,12 @@
 section{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.nav{
-    border: 0.2rem solid white;
-    display: flex;
-    font-size: 18px;
-    background: seagreen;
-    padding: 12px;
-    font-weight: 500;
-    color: white;
+.main h3{
+    font-style: italic;
 }
-#basic ul{
-    padding: 1px 90px;
-    list-style-type: none;
-    display: flex;
-    margin: 0cm;
-}
-#basic li a{
-    margin: 1px 30px;
-    color: white;
-    text-decoration: none;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.header{
+    display: contents;
+    text-shadow: 0 0 wheat;
 }
 .main{
     display: flex;
@@ -70,11 +56,12 @@ section{
 .verifyBtn{
     margin: 4px;
     font-size: 15px;
-    padding: 1px 30px;
+    padding: 1px 20px;
+    border-radius: 10px;
 }
 .mainBtn{
-    display: inline-table;
+    display: flex;
+    flex-direction: row-reverse;
     margin: 0px 30px;
-    position: absolute;
-    right: 0px;
+    
 }
