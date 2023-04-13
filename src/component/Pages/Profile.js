@@ -12,7 +12,7 @@ const Profile=()=>{
     const sumbitUpdate=(e)=>{
         e.preventDefault();
 
-       fetch("https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
+       fetch("https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDbLh47cYiIULS75nREIYr4JKrs7RQ-Bsk",{
         method: 'POST',
         body: JSON.stringify({
             idToken: localStorage.getItem("token"),
@@ -38,7 +38,7 @@ const Profile=()=>{
     }
 // get the data
     const getDataHandler=()=>{
-        fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDgHb63575x-JMe_nLV3p1wqHRtBRS6j28",{
+        fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDbLh47cYiIULS75nREIYr4JKrs7RQ-Bsk",{
             method: 'POST',
             body:JSON.stringify({
                 idToken:localStorage.getItem("token"),
@@ -47,7 +47,7 @@ const Profile=()=>{
         }).then((res)=>{
             const data= res.json();
             data.then((resp)=>{
-                console.log( "get data user",resp.users);
+                console.log( "get data user",resp);
                 setName(resp.users[0].displayName);
                 setUrl(resp.users[0].photoUrl);
             })

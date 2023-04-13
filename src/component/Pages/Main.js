@@ -1,20 +1,20 @@
 import { Fragment, 
-    useContext, 
-    useState 
+   // useContext, 
 } from "react";
 import { Link } from "react-router-dom";
 import './main.css'
-import AuthContext from "../Auth File/authContext";
+//import AuthContext from "../Auth File/authContext";
 import DailyExpense from "./DailyExpense";
+import {useDispatch} from 'react-redux'
+import { authAction } from "../../store/auth-slice";
 
 const Main=()=>{
-     const authCtx= useContext(AuthContext);
-     const [log,setLog]=useState(false);
+    const dispatch= useDispatch();
+     //const authCtx= useContext(AuthContext);
+     //const [log,setLog]=useState(false);
 
     const logoutHandler=()=>{
-        //setLog(false);
-        setLog(authCtx.logout)
-        
+        dispatch(authAction.logout());       
     }
 
     const verifyHandler=(e)=>{
@@ -47,7 +47,7 @@ const Main=()=>{
         <Link to="/completeprofile"> Complete Now </Link></div>
         </div>
         <div className="mainBtn">
-            {!log && <button className="verifyBtn" onClick={logoutHandler} >Logout</button>}<br/>
+             <button className="verifyBtn" onClick={logoutHandler} >Logout</button><br/>
             <button className="verifyBtn" onClick={verifyHandler}> Verify Email </button>
         </div>
         <div>

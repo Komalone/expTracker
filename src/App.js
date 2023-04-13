@@ -1,17 +1,22 @@
-import React,{ Fragment, useContext} from 'react';
+import React,{ Fragment, 
+  //useContext
+} from 'react';
 import {Route, Routes} from 'react-router-dom'
 import './App.css';
 import Authentication from './component/Auth File/AuthPage';
 import Main from './component/Pages/Main';
 import Header from './component/Pages/Header';
 import Profile from './component/Pages/Profile';
-import AuthContext from './component/Auth File/authContext';
+//import AuthContext from './component/Auth File/authContext';
 import ForgetPassword from './component/Auth File/ForgetPswd';
+import {useSelector} from 'react-redux'
 
 function App() {
-  const auth= useContext(AuthContext);
-  const isLogin= auth.isLoggedIn;
-  
+  //const auth= useContext(AuthContext);
+ // const isLogin= auth.isLoggedIn;
+ const isLogin= useSelector(state=> state.auth.isAuthenticated);
+ console.log(isLogin);
+
   return (
     <Fragment>
         <Header/>

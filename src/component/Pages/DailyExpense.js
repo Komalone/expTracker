@@ -2,6 +2,8 @@ import { Button, Form , Table} from 'react-bootstrap';
 import './DailyExp.css';
 import {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
+import { useDispatch} from 'react-redux'
+import { expAction } from '../../store/expense-slice'
 
 const DailyExpense=()=>{
     const [expenses, setExpense]= useState([]);
@@ -10,8 +12,12 @@ const DailyExpense=()=>{
     const categoryRef= useRef();
     const [getExp, setGetExp]=useState([])
 
+    const dispatch=useDispatch();
+
+
     let url="https://expensetracker-3cbe3-default-rtdb.firebaseio.com/"
-    const LoginEmail= localStorage.getItem('email').replace(/[@.]/g, "");
+    const LoginEmail= localStorage.getItem('email').replace(/[@.]/g, "")
+ 
 
     const formSubmit=(e)=>{
         e.preventDefault();
@@ -41,9 +47,22 @@ const DailyExpense=()=>{
         .then((res)=>{
             if(res.data){
                 setGetExp(res.data);
+               //console.log(res.data);
+               dispatch(expAction.addItemHandler(res.data));
             }
         })
-    },[getExp,url,LoginEmail])
+    },[getExp, url, LoginEmail, dispatch]);
+
+    let totalAmount=0
+    Object.keys(getExp).forEach((key)=>{
+        totalAmount= totalAmount + (+getExp[key].amount);
+    })
+    if(totalAmount > 10000){
+        dispatch(expAction.premiun())
+    }else{
+        dispatch(expAction.nonPremium());
+    }
+    
 
     const delExpense=(key)=>{
         console.log(key);
@@ -93,7 +112,7 @@ const DailyExpense=()=>{
             </Form.Control>
         </Form.Group>
         <div>
-            <Button variant='success' type='submit'> Add Expense</Button>
+            {getExp && <Button variant='success' type='submit'> Add Expense</Button>}
             <Button variant='secondary'>Edit Expense</Button>
         </div>
     </Form>
@@ -122,6 +141,7 @@ const DailyExpense=()=>{
         </tbody>
         </Table>
     </div>
+    <h2> Total Amount = Rs {totalAmount}</h2>
     </>
    );
 }

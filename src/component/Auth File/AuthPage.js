@@ -1,15 +1,21 @@
-import React, { useContext, useRef, useState } from 'react'; 
+import React, { 
+  //useContext, 
+  useRef, useState } from 'react'; 
 import {useNavigate, Link} from 'react-router-dom';
-import AuthContext from './authContext';
+//import AuthContext from './authContext';
 import './auth.css';
+import {useDispatch} from 'react-redux'
+import { authAction } from '../../store/auth-slice';
 
 const Authentication = () => {
+  const dispatch= useDispatch();
+
     
     const [isLogin, setIsLogin] = useState(true);
    const emailInput=useRef("");
    const passwordInput=useRef("");
    const confPswdInput=useRef("");
-   const authCtx=useContext(AuthContext);
+   //const authCtx=useContext(AuthContext);
     const navigate= useNavigate();
 
   const switchAuthModeHandler = () => {
@@ -49,10 +55,9 @@ const Authentication = () => {
             let data= res.json();
             data.then((resp)=>{
                 console.log(resp);
-                localStorage.setItem('token', resp.idToken);
-                localStorage.setItem('email', resp.email)
-                authCtx.login(res.email);
-                authCtx.isLoggedIn=true;
+                //authCtx.login(resp.idToken, resp.email);
+                //authCtx.isLoggedIn=true;
+                dispatch(authAction.login({ token: resp.idToken, email: resp.email}));
                 navigate("/")
             })
         }else{

@@ -14,3 +14,8 @@ fieldset h4{
     margin: auto;
     padding: 10px;
 }
+h2{
+    text-align: center;
+    padding: 10px;
+    background: seagreen;
+}
