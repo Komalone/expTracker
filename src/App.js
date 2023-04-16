@@ -15,7 +15,7 @@ function App() {
   //const auth= useContext(AuthContext);
  // const isLogin= auth.isLoggedIn;
  const isLogin= useSelector(state=> state.auth.isAuthenticated);
- console.log(isLogin);
+ 
 
   return (
     <Fragment>

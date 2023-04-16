@@ -14,7 +14,8 @@ const Main=()=>{
      //const [log,setLog]=useState(false);
 
     const logoutHandler=()=>{
-        dispatch(authAction.logout());       
+        dispatch(authAction.logout()); 
+        localStorage.removeItem('dark theme');    
     }
 
     const verifyHandler=(e)=>{

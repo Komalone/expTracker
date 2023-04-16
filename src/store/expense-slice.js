@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialExpState={
     items:[],
-    activePremium: !!localStorage.getItem('active premium')
+    activePremium: !!localStorage.getItem('active premium'),
+    theme: 'light'
 };
 
 const ExpSlice=createSlice({
@@ -20,6 +21,11 @@ const ExpSlice=createSlice({
         nonPremium(state){
             state.activePremium= false;
             localStorage.removeItem("premium");
+            localStorage.removeItem('changetheme');
+        },
+        changeTheme(state){
+            state.theme= !state.theme;
+            localStorage.setItem('changetheme', state.theme);
         }
     }
 });
