@@ -11,8 +11,8 @@ const ExpSlice=createSlice({
     initialState:initialExpState,
     reducers:{
         addItemHandler(state,action){
-            state.items=[action.payload]
-            //console.log(action);
+            //console.log(action.payload);
+            state.items=action.payload; // storing data one by one
         },
         premiun(state){
             state.activePremium= true;

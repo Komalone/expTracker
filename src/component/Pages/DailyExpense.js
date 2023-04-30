@@ -1,16 +1,19 @@
 import { Button, Form , Table} from 'react-bootstrap';
 import './DailyExp.css';
-import {useEffect, useRef, useState} from 'react';
+import {
+     useEffect,
+     useRef, useState} from 'react';
 import axios from 'axios';
 import { useDispatch} from 'react-redux'
 import { expAction } from '../../store/expense-slice'
 
 const DailyExpense=()=>{
-    const [expenses, setExpense]= useState([]);
+    
     const amountRef=useRef();
     const descriptionRef=useRef();
     const categoryRef= useRef();
     const [getExp, setGetExp]=useState([])
+    const [render,setRender]=useState(true)
 
     const dispatch=useDispatch();
 
@@ -23,6 +26,7 @@ const DailyExpense=()=>{
         e.preventDefault();
 
         const exp={
+            
             amount: amountRef.current.value,
             descp: descriptionRef.current.value,
             cate: categoryRef.current.value
@@ -30,30 +34,37 @@ const DailyExpense=()=>{
 
         axios.post(`${url}${LoginEmail}.json`, exp)
         .then((res)=>{
-            console.log(res);
-            setExpense([...expenses, exp])
+            exp.id=res.data.name;
+            console.log([...getExp,exp]);
+            setGetExp([...getExp,exp]);
         })
         .catch((err)=>{
             console.log(err);
         })
-
+        
         amountRef.current.value="";
         descriptionRef.current.value="";
         categoryRef.current.value="";
     };
 
-    useEffect(() =>{
+    //display data one by one
+    useEffect(() =>{  
         axios.get(`${url}${LoginEmail}.json`)
         .then((res)=>{
             if(res.data){
-                setGetExp(res.data);
-               //console.log(res.data);
-               dispatch(expAction.addItemHandler(res.data));
+                const items=[]
+                for(let i in res.data){
+                    items.push({id: i, ...res.data[i]});
+                }
+                console.log(items)
+               setGetExp(items);
+               dispatch(expAction.addItemHandler(items));
             }
         })
-    },[getExp, url, LoginEmail, dispatch]);
+    },[render]);
 
     let totalAmount=0
+    
     Object.keys(getExp).forEach((key)=>{
         totalAmount= totalAmount + (+getExp[key].amount);
     })
@@ -62,29 +73,31 @@ const DailyExpense=()=>{
     }else{
         dispatch(expAction.nonPremium());
     }
-    
 
     const delExpense=(key)=>{
         console.log(key);
+        
         axios.delete(`${url}${LoginEmail}/${key}.json`)
         .then((res)=>{
             console.log("deleted expense");
-            const updateExp= {...getExp};
-            //delete updateExp[key];
-            setGetExp(updateExp);
+            setRender((prev)=> !prev)
+            
+        })
+        .catch((error)=>{
+            console.log(error);
         })
     }
     const editExpense=(key)=>{
         console.log(key)
         axios.get(`${url}${LoginEmail}/${key}.json`)
         .then((res)=>{
-            console.log(res);
+           // console.log(res);
             amountRef.current.value = res.data.amount;
             descriptionRef.current.value= res.data.descp;
-            categoryRef.current.value= res.data.cate;
-            delExpense(key); 
+            categoryRef.current.value= res.data.cate; 
         })
         .catch(err=> console.log(err));
+        delExpense(key);
     };
 
    return (
@@ -112,8 +125,7 @@ const DailyExpense=()=>{
             </Form.Control>
         </Form.Group>
         <div>
-            {getExp && <Button variant='success' type='submit'> Add Expense</Button>}
-            <Button variant='secondary'>Edit Expense</Button>
+            <Button variant='success' type='submit'> Add Expense</Button>
         </div>
     </Form>
     </fieldset>
@@ -129,13 +141,14 @@ const DailyExpense=()=>{
         </tr></thead>
         <tbody>
             {Object.keys(getExp).map((key,index)=> (
-                <tr key={key}>
+                //console.log(getExp[key]),
+                <tr key={getExp[key].id}>
                     <td>{index + 1}</td>
                     <td>{getExp[key].cate}</td>
                     <td>{getExp[key].descp}</td>
                     <td>{getExp[key].amount}</td>
-                    <td><Button variant='danger' onClick={()=>delExpense(key)} >Delete</Button></td>
-                    <td><Button variant='secondary' onClick={()=>editExpense(key)}>Edit</Button></td>
+                    <td><Button variant='danger' onClick={()=>delExpense(getExp[key].id)} >Delete</Button></td>
+                    <td><Button variant='secondary' onClick={()=>editExpense(getExp[key].id)}>Edit</Button></td>
                 </tr>
             ))}
         </tbody>

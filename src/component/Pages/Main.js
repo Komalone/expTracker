@@ -15,7 +15,8 @@ const Main=()=>{
 
     const logoutHandler=()=>{
         dispatch(authAction.logout()); 
-        localStorage.removeItem('dark theme');    
+        localStorage.removeItem('dark theme');
+        localStorage.removeItem('premium');    
     }
 
     const verifyHandler=(e)=>{
